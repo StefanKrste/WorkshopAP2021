@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "983284357973",
+    "firebase_url": "https://workshop-3216d-default-rtdb.firebaseio.com",
+    "project_id": "workshop-3216d",
+    "storage_bucket": "workshop-3216d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983284357973:android:3fcf150e5072a69b042ddc",
+        "android_client_info": {
+          "package_name": "com.example.workshopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983284357973-v6du5c076uh2p7klos32o1hp1ramkscn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk70nWxrvRfX3zrpu1CMkMR8IVIzSpcXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983284357973-v6du5c076uh2p7klos32o1hp1ramkscn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

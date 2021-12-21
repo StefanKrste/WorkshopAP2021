@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostaroLiceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        app:title="Барање за помош"
+        android:backgroundTint="@color/black"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editTextAktivnost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:hint=" Внесете активност"
+            android:drawableLeft="@drawable/ic_work"/>
+
+        <EditText
+            android:id="@+id/editTextOpis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editTextAktivnost"
+            android:hint=" Внесете опис на активноста"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_book"/>
+
+        <TextView
+            android:id="@+id/txtFrekfentnost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/editTextOpis"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="19dp"
+            android:textColor="@color/black"
+            android:text="Фрекфентност на активноста"
+            android:textStyle="bold"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupFrekfentnost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/txtFrekfentnost"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:id="@+id/radioEdnokratno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Еднократно"
+                android:textSize="16sp"
+                android:checked="true"
+                android:onClick="Frekfencija"
+                />
+            <RadioButton
+                android:id="@+id/radioNedelno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Неделно"
+                android:textSize="16sp"
+                android:onClick="Frekfencija"
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtVreme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupFrekfentnost"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Времетраење и ден"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/txtSaatOd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txtVreme"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:hint="ОД"
+            android:textSize="17sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="35dp"
+            android:drawableLeft="@drawable/ic_time"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="SelectTime"
+            />
+
+        <TextView
+            android:id="@+id/txtSaatDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txtVreme"
+            app:layout_constraintLeft_toRightOf="@+id/txtSaatOd"
+            android:hint="ДО"
+            android:textSize="17sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:drawableLeft="@drawable/ic_time"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="SelectTime"
+            />
+
+        <TextView
+            android:id="@+id/txtDatum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txtVreme"
+            app:layout_constraintLeft_toRightOf="@+id/txtSaatDo"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"
+            android:hint="Датум"
+            android:drawableLeft="@drawable/ic_date"
+            android:gravity="center"
+            android:onClick="SelectDate"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerDenovi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txtVreme"
+            app:layout_constraintLeft_toRightOf="@+id/txtSaatDo"
+            android:drawableLeft="@drawable/ic_date"
+            android:layout_marginLeft="65dp"
+            android:textSize="17sp"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dialog"
+            android:entries="@array/nizaDenovi"
+            />
+
+    <TextView
+        android:id="@+id/txtLokacija"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDenovi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:background="@drawable/border"
+        android:hint="Локација"
+        android:drawableLeft="@drawable/ic_location"
+        android:gravity="center"
+        android:onClick="SelectLocation"
+        />
+    
+    <Button
+        android:id="@+id/buttonZacuvaj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/txtLokacija"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@color/white"
+        android:text="Зачувај"
+        app:cornerRadius="20dp"
+        android:onClick="ZacuvajAktivnost"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
