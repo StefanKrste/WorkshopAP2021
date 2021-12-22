@@ -7,11 +7,15 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -47,6 +51,7 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
     private List<Address> addresses;
     private String selectedAddress;
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -65,6 +70,7 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
                 public void onMapClick(LatLng latLng) {
                     selectedLat = latLng.latitude;
                     selectedLng = latLng.longitude;
+
                     GetAddress(selectedLat, selectedLng);
                 }
             });

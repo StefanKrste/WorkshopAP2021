@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/txtGlavenNaslov"
@@ -25,7 +26,10 @@
         android:hint=" Email"
         app:layout_constraintTop_toBottomOf="@+id/txtGlavenNaslov"
         android:layout_marginTop="90dp"
-        android:drawableLeft="@drawable/ic_email"/>
+        android:drawableLeft="@drawable/ic_email"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <EditText
         android:id="@+id/LoginPassword"
@@ -35,7 +39,10 @@
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/LoginEmail"
         android:layout_marginTop="70dp"
-        android:drawableLeft="@drawable/ic_pass"/>
+        android:drawableLeft="@drawable/ic_pass"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <Button
         android:id="@+id/buttonLogin"

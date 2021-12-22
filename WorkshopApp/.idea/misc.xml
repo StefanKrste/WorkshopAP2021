@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_postaro_lice.xml" value="0.5" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/drawable/spinner_background.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_postaro_lice.xml" value="0.44469525959367945" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_postaro_lice_baranja.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_register.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/activity_volonter.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/spiner_text.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/layout/spinner_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/main/res/menu/actionbar_postaro_lice.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Krstoo/Documents/GitHub/WorkshopAP2021/WorkshopApp/app/src/release/res/layout/spinner_item.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

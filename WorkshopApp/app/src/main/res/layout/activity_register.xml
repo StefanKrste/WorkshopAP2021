@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -13,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         app:title="Регистрација"
-        android:backgroundTint="@color/black"/>
+        app:titleTextColor="@color/black"
+        android:backgroundTint="#FFC107"/>
 
     <EditText
         android:id="@+id/RegisterName"
@@ -22,7 +24,10 @@
         android:hint=" Full name"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/ic_name"/>
+        android:drawableLeft="@drawable/ic_name"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <EditText
         android:id="@+id/RegisterEmail"
@@ -31,7 +36,10 @@
         android:hint=" Email"
         app:layout_constraintTop_toBottomOf="@+id/RegisterName"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/ic_email"/>
+        android:drawableLeft="@drawable/ic_email"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <EditText
         android:id="@+id/RegisterPassword"
@@ -41,7 +49,10 @@
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/RegisterEmail"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/ic_pass"/>
+        android:drawableLeft="@drawable/ic_pass"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <EditText
         android:id="@+id/RegisterPassword2"
@@ -51,7 +62,10 @@
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/RegisterPassword"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/ic_pass"/>
+        android:drawableLeft="@drawable/ic_pass"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <EditText
         android:id="@+id/RegisterPhone"
@@ -60,7 +74,10 @@
         android:hint=" Phone number"
         app:layout_constraintTop_toBottomOf="@+id/RegisterPassword2"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/ic_phone"/>
+        android:drawableLeft="@drawable/ic_phone"
+        android:textColor="@color/black"
+        android:textColorHint="#7E7C7C"
+        android:backgroundTint="@color/black"/>
 
     <RadioGroup
         android:id="@+id/radioGroupTip"
@@ -77,11 +94,13 @@
             android:id="@+id/radioVolonter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Волонтер"/>
         <RadioButton
             android:id="@+id/radioPovozrasnoLice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Повозрасно лице"
             android:checked="true"/>
 
@@ -96,9 +115,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="20dp"
         android:text="Register"
-        android:backgroundTint="@android:color/black"
         android:textColor="@color/white"
         android:layout_marginTop="17dp"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@android:color/holo_orange_light"
         android:onClick="Register"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

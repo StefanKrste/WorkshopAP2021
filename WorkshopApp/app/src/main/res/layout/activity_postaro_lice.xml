@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostaroLiceActivity">
+    tools:context=".PostaroLiceActivity"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -13,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         app:title="Барање за помош"
-        android:backgroundTint="@color/black"/>
+        app:titleTextColor="@color/black"
+        android:backgroundTint="#FFC107"/>
     
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +35,10 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:hint=" Внесете активност"
-            android:drawableLeft="@drawable/ic_work"/>
+            android:drawableLeft="@drawable/ic_work"
+            android:textColor="@color/black"
+            android:textColorHint="#7E7C7C"
+            android:backgroundTint="@color/black"/>
 
         <EditText
             android:id="@+id/editTextOpis"
@@ -42,7 +47,10 @@
             app:layout_constraintTop_toBottomOf="@id/editTextAktivnost"
             android:hint=" Внесете опис на активноста"
             android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_book"/>
+            android:drawableLeft="@drawable/ic_book"
+            android:textColor="@color/black"
+            android:textColorHint="#7E7C7C"
+            android:backgroundTint="@color/black"/>
 
         <TextView
             android:id="@+id/txtFrekfentnost"
@@ -76,6 +84,7 @@
                 android:textSize="16sp"
                 android:checked="true"
                 android:onClick="Frekfencija"
+                android:textColor="@color/black"
                 />
             <RadioButton
                 android:id="@+id/radioNedelno"
@@ -84,6 +93,7 @@
                 android:text="Неделно"
                 android:textSize="16sp"
                 android:onClick="Frekfencija"
+                android:textColor="@color/black"
                 />
 
         </RadioGroup>
@@ -110,11 +120,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:hint="ОД"
             android:textSize="17sp"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:drawableLeft="@drawable/ic_time"
             android:gravity="center"
             android:clickable="true"
+            android:textColorHint="#7E7C7C"
             android:onClick="SelectTime"
             />
 
@@ -128,10 +140,12 @@
             android:textSize="17sp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
+            android:textColor="@color/black"
             android:drawableLeft="@drawable/ic_time"
             android:gravity="center"
             android:clickable="true"
             android:onClick="SelectTime"
+            android:textColorHint="#7E7C7C"
             />
 
         <TextView
@@ -143,9 +157,11 @@
             android:layout_marginLeft="75dp"
             android:layout_marginTop="20dp"
             android:textSize="17sp"
+            android:textColor="@color/black"
             android:hint="Датум"
             android:drawableLeft="@drawable/ic_date"
             android:gravity="center"
+            android:textColorHint="#7E7C7C"
             android:onClick="SelectDate"
             />
 
@@ -160,7 +176,6 @@
             android:textSize="17sp"
             android:layout_marginTop="20dp"
             android:spinnerMode="dialog"
-            android:entries="@array/nizaDenovi"
             />
 
     <TextView
@@ -174,6 +189,7 @@
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:textColorHint="#7E7C7C"
         android:background="@drawable/border"
         android:hint="Локација"
         android:drawableLeft="@drawable/ic_location"

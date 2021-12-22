@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -33,8 +34,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class PostaroLiceActivity extends AppCompatActivity {
@@ -51,6 +55,8 @@ public class PostaroLiceActivity extends AppCompatActivity {
 
     private double Lat,Log = 0;
     private String Address = "";
+
+    private List<String> list = Arrays.asList("Понеделник", "Вторник", "Среда", "Четврток", "Петок","Сабота","Недела");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,8 @@ public class PostaroLiceActivity extends AppCompatActivity {
 
 
         spinerDenovi.setVisibility(View.INVISIBLE);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,list);
+        spinerDenovi.setAdapter(adapter);
 
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
     }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostaroLiceBaranjaActivity">
+    tools:context=".PostaroLiceBaranjaActivity"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -13,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         app:title="Ваши активности"
-        android:backgroundTint="@color/black"/>
+        app:titleTextColor="@color/black"
+        android:backgroundTint="#FFC107"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
