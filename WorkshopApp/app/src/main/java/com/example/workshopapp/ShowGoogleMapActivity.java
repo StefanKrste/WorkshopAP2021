@@ -1,20 +1,20 @@
 package com.example.workshopapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -30,7 +30,24 @@ import com.google.android.gms.tasks.Task;
 import java.util.List;
 import java.util.Locale;
 
-public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyCallback{
+public class ShowGoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        if (mLocationPermissionsGranted) {
+            getDeviceLocation();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
+
+        }
+    }
 
     private static final String TAG = "GoogleMapActivity";
 
@@ -47,42 +64,31 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
     private List<Address> addresses;
     private String selectedAddress;
 
+    private double lat = 0;
+    private double lon = 0;
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mMap.setMyLocationEnabled(true);
-
-            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                @Override
-                public void onMapClick(LatLng latLng) {
-                    selectedLat = latLng.latitude;
-                    selectedLng = latLng.longitude;
-
-                    GetAddress(selectedLat, selectedLng);
-                }
-            });
-        }
-    }
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_map);
 
+        Intent intent = getIntent();
+
+        lat = intent.getDoubleExtra("lat", 0);
+        lon = intent.getDoubleExtra("lon", 0);
+
+        textView = (TextView) findViewById(R.id.txtIzberiLokacija);
+        textView.setVisibility(View.INVISIBLE);
+
         getLocationPermission();
     }
 
     private void getDeviceLocation(){
+
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
         try{
             if(mLocationPermissionsGranted){
 
@@ -91,14 +97,9 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful()){
-                            Location currentLocation = (Location) task.getResult();
-
-                            selectedLat = currentLocation.getLatitude();
-                            selectedLng = currentLocation.getLongitude();
-
-                            GetAddress(selectedLat, selectedLng);
+                            GetAddress(lat, lon);
                         }else{
-                            Toast.makeText(GoogleMapActivity.this, "Unable to get current location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ShowGoogleMapActivity.this, "Unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -110,7 +111,7 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
 
     private void initMap(){
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(GoogleMapActivity.this);
+        mapFragment.getMapAsync(ShowGoogleMapActivity.this);
     }
 
     private void getLocationPermission(){
@@ -159,11 +160,11 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
     private void GetAddress(double Lat, double Lng) {
         geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
         if(Lat != 0) {
-                try {
-                    addresses = geocoder.getFromLocation(Lat, Lng, 1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                addresses = geocoder.getFromLocation(Lat, Lng, 1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if(addresses != null && addresses.size() > 0) {
                 String myAddress = addresses.get(0).getAddressLine(0);
@@ -189,12 +190,4 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
         }
     }
 
-    public void SelectLocation(View view) {
-        Intent intent = new Intent();
-        intent.putExtra("latitude", selectedLat);
-        intent.putExtra("longitude", selectedLng);
-        intent.putExtra("address", selectedAddress);
-        setResult(RESULT_OK, intent);
-        finish();
-    }
 }

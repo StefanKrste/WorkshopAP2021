@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VolonterActivity"
+    tools:context=".VolonterSvojZadaciActivity"
     android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,18 +13,28 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        app:title="Барања за помош"
+        app:title="Мој активности"
         app:titleTextColor="@color/black"
         android:backgroundTint="#FFC107"/>
 
+    <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list1"
+        android:id="@+id/list2"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerStatus"
         android:layout_marginTop="15dp"
-        android:paddingBottom="110dp"
+        android:paddingBottom="140dp"
         android:clipToPadding="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

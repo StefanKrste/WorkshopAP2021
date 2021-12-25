@@ -14,84 +14,88 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/rwAktivnost"
+            android:id="@+id/rw1TipAktivnost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             card_view:layout_constraintTop_toTopOf="parent"
             android:textSize="25sp"
-            android:textColor="@color/black"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/rwDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            android:drawableTop="@drawable/ic_baseline_cancel_24" />
-
-        <TextView
-            android:id="@+id/rwOpisAktivnost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwAktivnost"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/rwVreme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwOpisAktivnost"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/rwAdresa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwVreme"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/rwVolonter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwAdresa"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/rwStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwVolonter"
-            card_view:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="10dp"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:gravity="right"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/rwInfo"
+            android:id="@+id/rw1OpisAktivnost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1TipAktivnost"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/rw1DatumVreme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1OpisAktivnost"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/rw1Lokacija"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1DatumVreme"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/purple_700"/>
+
+        <TextView
+            android:id="@+id/rw1ImePrezime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1Lokacija"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/rw1Kontakt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1ImePrezime"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/rw1Send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@+id/rwVolonter"
-            card_view:layout_constraintRight_toLeftOf="@+id/rwStatus"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1Kontakt"
+            card_view:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/black"
+            android:drawableTop="@drawable/ic_send" />
+
+        <TextView
+            android:id="@+id/rw1Done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1Kontakt"
+            card_view:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:drawableTop="@drawable/ic_done" />
+
+        <TextView
+            android:id="@+id/rw1Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/rw1Kontakt"
+            card_view:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
             android:drawableTop="@drawable/ic_info" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

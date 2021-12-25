@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +20,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,7 +32,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -269,7 +266,7 @@ public class PostaroLiceActivity extends AppCompatActivity {
         }
 
         String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Baranje baranje = new Baranje(UID, Aktivnost, OpisAktivnost, VremeOd, VremeDo, Datum, Denovi, Address, "Активно", Log, Lat, "", "" );
+        Baranje baranje = new Baranje(UID, "", Aktivnost, OpisAktivnost, VremeOd, VremeDo, Datum, Denovi, Address, "Активно", Log, Lat, "", "", 0, 0, "", "" );
         FirebaseDatabase.getInstance().getReference("Baranja")
                 .child(UUID.randomUUID().toString()).setValue(baranje).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

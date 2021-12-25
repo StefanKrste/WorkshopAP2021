@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,14 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PostaroLiceBaranjaActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private myAdapter mAdapter;
+    private myAdapterPostaroLice mAdapter;
 
     private List<Baranje> list = new ArrayList<>();
 
@@ -54,7 +52,7 @@ public class PostaroLiceBaranjaActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new myAdapter(list, R.layout.baranje, this);
+        mAdapter = new myAdapterPostaroLice(list, R.layout.baranje, this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -64,7 +62,6 @@ public class PostaroLiceBaranjaActivity extends AppCompatActivity {
         inflater.inflate(R.menu.actionbar_postaro_lice_baranja, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -103,10 +100,28 @@ public class PostaroLiceBaranjaActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Baranje baranje = dataSnapshot.getValue(Baranje.class);
                     baranje.setAktivnostId(dataSnapshot.getKey());
+                    if(baranje.getStatus().equals("На чекање")) {
+                        baranje.setStatusId(1);
+                    } else if(baranje.getStatus().equals("Активно")) {
+                        baranje.setStatusId(2);
+                    } else if(baranje.getStatus().equals("Закажано")) {
+                        baranje.setStatusId(3);
+                    } else if(baranje.getStatus().equals("Завршено") && baranje.getOcenaVolonter() == 0) {
+                        baranje.setStatusId(4);
+                    } else {
+                        baranje.setStatusId(5);
+                    }
                     if(baranje.getUserId().equals(UserId)) {
                         list.add(baranje);
                     }
                 }
+                Collections.sort(list, new Comparator<Baranje>() {
+                    @Override
+                    public int compare(Baranje o1, Baranje o2) {
+                        return Integer.valueOf(o1.getStatusId()).compareTo(o2.getStatusId());
+                    }
+                });
+
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -116,4 +131,5 @@ public class PostaroLiceBaranjaActivity extends AppCompatActivity {
             }
         });
     }
+
 }

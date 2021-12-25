@@ -1,12 +1,9 @@
 <resources>
     <string name="app_name">WorkshopApp</string>
-    <string-array name="nizaDenovi">
-        <item>Понеделник</item>
-        <item>Вторник</item>
-        <item>Среда</item>
-        <item>Четврток</item>
-        <item>Петок</item>
-        <item>Сабота</item>
-        <item>Недела</item>
+
+    <string-array name="nizaStatus">
+        <item>Закажано</item>
+        <item>На чекање</item>
+        <item>Завршено</item>
     </string-array>
 </resources>

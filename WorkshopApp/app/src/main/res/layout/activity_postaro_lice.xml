@@ -175,7 +175,6 @@
             android:layout_marginLeft="65dp"
             android:textSize="17sp"
             android:layout_marginTop="20dp"
-            android:spinnerMode="dialog"
             />
 
     <TextView

@@ -20,6 +20,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,16 +39,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class VolonterActivity extends AppCompatActivity {
+public class VolonterSvojZadaciActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private myAdapterVolonterAktivniBaranja mAdapter;
-
-    private List<Baranje> list = new ArrayList<>();
+    private myAdapterVolonterSiteBaranja mAdapter;
 
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -55,37 +58,63 @@ public class VolonterActivity extends AppCompatActivity {
 
     private Location myLocation;
 
+    private List<Baranje> list = new ArrayList<>();
+
+    private Spinner spinner;
+
+    private List<String> listspinner = Arrays.asList("На чекање", "Закажано", "Завршено");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volonter);
+        setContentView(R.layout.activity_volonter_svoj_zadaci);
 
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         getLocationPermission();
         getDeviceLocation();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.list1);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list2);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new myAdapterVolonterAktivniBaranja(list, R.layout.aktivni_baranja_volonter, this);
+        mAdapter = new myAdapterVolonterSiteBaranja(list, R.layout.aktivni_baranja_volonter, this);
         mRecyclerView.setAdapter(mAdapter);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        spinner = findViewById(R.id.spinnerStatus);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CreateList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(VolonterSvojZadaciActivity.this, "Настана грешка.Обидете се повторно!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,listspinner);
+        spinner.setAdapter(adapter);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.actionbar_postaro_lice, menu);
+        inflater.inflate(R.menu.actionbar_postaro_lice_baranja, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_baranja:
-                Intent intent = new Intent(this, VolonterSvojZadaciActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.action_signout:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Одјави се");
@@ -93,7 +122,7 @@ public class VolonterActivity extends AppCompatActivity {
                 builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(VolonterActivity.this, MainActivity.class));
+                        startActivity(new Intent(VolonterSvojZadaciActivity.this, MainActivity.class));
                         dialog.dismiss();
                     }
                 });
@@ -119,19 +148,22 @@ public class VolonterActivity extends AppCompatActivity {
                 list.clear();
                 double rastojanie = 0;
                 double rastojanieKm = 0;
+                String status = spinner.getSelectedItem().toString();
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Baranje baranje = dataSnapshot.getValue(Baranje.class);
-                    if(myLocation != null) {
-                        LatLng Start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-                        LatLng End = new LatLng(baranje.getLatitude(), baranje.getLongitude());
-                        rastojanie = PresmetajRastojanie(Start, End);
-                    }
-                    rastojanieKm = rastojanie / 1000;
-                    baranje.setRastojanie((double) Math.round(rastojanieKm * 100) / 100);
-                    baranje.setAktivnostId(dataSnapshot.getKey());
-                    if(baranje.getStatus().equals("Активно")) {
-                        list.add(baranje);
+                    if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(baranje.getVolonterUId())) {
+                        if (myLocation != null) {
+                            LatLng Start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                            LatLng End = new LatLng(baranje.getLatitude(), baranje.getLongitude());
+                            rastojanie = PresmetajRastojanie(Start, End);
+                        }
+                        rastojanieKm = rastojanie / 1000;
+                        baranje.setRastojanie((double) Math.round(rastojanieKm * 100) / 100);
+                        baranje.setAktivnostId(dataSnapshot.getKey());
+                        if (baranje.getStatus().equals(status)) {
+                            list.add(baranje);
+                        }
                     }
                 }
 
@@ -147,7 +179,7 @@ public class VolonterActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(VolonterActivity.this, "Настана грешка.Обидете се повторно!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VolonterSvojZadaciActivity.this, "Настана грешка.Обидете се повторно!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -206,7 +238,7 @@ public class VolonterActivity extends AppCompatActivity {
                             myLocation = (Location) task.getResult();
                             CreateList();
                         }else{
-                            Toast.makeText(VolonterActivity.this, "Unable to get current location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VolonterSvojZadaciActivity.this, "Unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
