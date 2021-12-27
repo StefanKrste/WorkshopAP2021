@@ -168,6 +168,10 @@ public class GoogleMapActivity extends AppCompatActivity  implements OnMapReadyC
             if(addresses != null && addresses.size() > 0) {
                 String myAddress = addresses.get(0).getAddressLine(0);
 
+                if(myAddress.contains("North Macedonia")){
+                    myAddress=myAddress.replace("North Macedonia","Macedonia");
+                }
+
                 selectedAddress = myAddress;
 
                 if(myAddress != null) {
